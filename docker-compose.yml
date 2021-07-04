@@ -1,0 +1,26 @@
+version: "3"
+services: 
+  nginx:
+    image: nginx:stable-alpine # pull from the official docker hub image (no custom)
+
+  node-docker:
+    build: . # build from our custom image (Dockerfile)
+    environment: 
+      - PORT=3000
+    depends_on: 
+      - mongo
+
+  mongo:
+    image: mongo # pull from the official docker hub image (no custom)
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=chris
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes: 
+      - mongo-db:/data/db
+      
+  redis:
+    image: redis # pull from the official docker hub image (no custom)
+
+volumes: 
+  mongo-db:
+    
