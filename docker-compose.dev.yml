@@ -12,7 +12,7 @@ services:
       args: 
         NODE_ENV: development
     volumes:
-      - ./:/app:ro
+      - ./:/app:ro # bind mount: only for development, it ignores .dockerignore file
       - /app/node_modules
     environment:
       - NODE_ENV=development
